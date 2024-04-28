@@ -1,0 +1,10 @@
+
+# built binaries for testing
+load
+save
+
+# save file itself
+*.sf
+
+# misc
+.vscode

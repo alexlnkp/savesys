@@ -1,0 +1,4 @@
+#!/bin/bash
+
+gcc save.c -o save
+gcc load.c -o load
