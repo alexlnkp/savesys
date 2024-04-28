@@ -1,8 +1,6 @@
 
 # built binaries for testing
-load
-save
-lns
+bin
 
 # save file itself
 *.sf

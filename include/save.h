@@ -23,22 +23,32 @@ struct Save {
     struct Score* scoreBoard;
 };
 
+/**
+ * @brief Allocate memory for a new save structure
+ *
+ * Allocates memory for a new save structure, sets its date to 0/0/0, and
+ * allocates memory for the scoreboard. If either allocation fails, the function
+ * frees the memory it has allocated so far and returns NULL.
+ *
+ * @param numScores Number of scores to allocate space for in the scoreboard
+ * @return Pointer to the new save structure on success, NULL on failure
+ */
 struct Save* newSave(size_t numScores) {
     struct Save* save = (struct Save*)malloc(sizeof(struct Save));
-    if (save == NULL) return NULL;
-    
-    save->CheckSum = 0;
-    save->D = 0;
+    if (save == NULL) return NULL; // If malloc fails, return NULL
+
+    save->CheckSum = 0; // Initialize checksum to 0
+    save->D = 0; // Initialize date to 0
     save->M = 0;
     save->Y = 0;
-    save->numScores = numScores;
+    save->numScores = numScores; // Set the amount of scores in the scoreboard array
     save->scoreBoard = (struct Score*)malloc(numScores * sizeof(struct Score));
-    if (save->scoreBoard == NULL) {
+    if (save->scoreBoard == NULL) { // If malloc fails, free the memory we have allocated and return NULL
         free(save);
         return NULL;
     }
 
-    return save;
+    return save; // Return the pointer to the new save structure
 }
 
 // Checksum calculation function
@@ -176,6 +186,15 @@ void *ParseSave(const char* path) {
     return readSave;
 }
 
+/**
+ * @brief Writes the savefile to disk
+ *
+ * Writes the savefile to disk at the specified `path`.
+ *
+ * @param save The save structure that contains the data to be written
+ * @param path The path where the savefile will be written
+ * @return Returns 0 on success, non-zero otherwise.
+ */
 int makeSave(struct Save *save, const char* path) {
     {   //  Writing to savefile
         FILE* fp = fopen(path, "wb");
@@ -195,7 +214,8 @@ int makeSave(struct Save *save, const char* path) {
         for (uint8_t i = 0; i < save->numScores; i++) fwrite(&save->scoreBoard[i], sizeof(struct Score), 1, fp);
 
         fclose(fp);
-    } {   // Calculating checksum
+
+    } { // Calculating checksum
         FILE* fp = fopen(path, "rb");
 
         uint8_t buffer[BUFFER_SIZE]; // Use a buffer to read the file in chunks
@@ -208,7 +228,8 @@ int makeSave(struct Save *save, const char* path) {
         fclose(fp);
         
         save->CheckSum = checksum;
-    } {   // Writing checksum
+
+    } { // Writing checksum
         FILE* fp = fopen(path, "rb+");
         // Move the file pointer to the beginning of the file
         fseek(fp, 0, SEEK_SET);

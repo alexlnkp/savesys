@@ -1,0 +1,12 @@
+A very simple save system, made primarily for my other project(s).
+
+For example usages - look into the `examples` folder.
+
+Depending on what functions you use, you will have to include different headers for the forward-declared functions used in the header.
+If you were to use all of them - you would need to include the next headers:
+`stdio.h`
+`stdlib.h`
+`string.h`
+
+Usage is simple; just include the `save.h` header and see what it can offer. All of the functions have comments and dosctrings, in case of anything - refer to those.
+

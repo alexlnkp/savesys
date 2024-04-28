@@ -2,16 +2,16 @@
 
 ./autobuild
 
-./save
+./bin/save
 
 echo
 echo "Saved data [0]:"
 
-./load
+./bin/load
 
-./lns
+./bin/lns
 
 echo
 echo "Saved data [1]:"
 
-./load
+./bin/load

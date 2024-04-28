@@ -1,6 +1,10 @@
 #!/bin/bash
 
-gcc save.c -o save
-gcc load.c -o load
+if [[ ! -d "bin" ]]; then
+    mkdir bin
+fi
 
-gcc loadandsave.c -o lns
+gcc examples/save.c -Iinclude -o bin/save
+gcc examples/load.c -Iinclude -o bin/load
+
+gcc examples/loadandsave.c -Iinclude -o bin/lns
