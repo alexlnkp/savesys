@@ -18,7 +18,7 @@
  * @param numScores Number of scores in the `Scores` array
  * @return Pointer to the new save
  */
-void* initSave(C Score *Scores, size_t numScores) {
+void* initSave(struct Score *Scores, size_t numScores) {
     // Allocate memory for the new save
     C Save *save = newSave(numScores);
 

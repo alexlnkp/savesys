@@ -50,6 +50,7 @@ uint_least32_t adler32(const uint8_t* data, size_t length) {
     return ((b << 16) | a);
 }
 
+void* initSave(struct Score *Scores, size_t numScores);
 void *ParseSave(const char* path);
 _Bool CheckSum(const char* path, uint_least32_t StoredChSum);
 
