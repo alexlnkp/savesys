@@ -3,4 +3,15 @@
 ./autobuild
 
 ./save
+
+echo
+echo "Saved data [0]:"
+
+./load
+
+./lns
+
+echo
+echo "Saved data [1]:"
+
 ./load

@@ -2,3 +2,5 @@
 
 gcc save.c -o save
 gcc load.c -o load
+
+gcc loadandsave.c -o lns

@@ -2,6 +2,7 @@
 # built binaries for testing
 load
 save
+lns
 
 # save file itself
 *.sf
