@@ -4,7 +4,8 @@ if [[ ! -d "bin" ]]; then
     mkdir bin
 fi
 
-gcc examples/save.c -Iinclude -o bin/save
-gcc examples/load.c -Iinclude -o bin/load
+# Build examples (tests)
+gcc examples/save.c -Wall -Iinclude -o bin/save
+gcc examples/load.c -Wall -Iinclude -o bin/load
 
-gcc examples/loadandsave.c -Iinclude -o bin/lns
+gcc examples/loadandsave.c -Wall -Iinclude -o bin/lns

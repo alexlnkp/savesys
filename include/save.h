@@ -89,7 +89,7 @@ void* initSave(struct Score *Scores, size_t numScores) {
     save->numScores = numScores;
 
     // Copy scores from `Scores` array to the new save
-    for (int i = 0; i < numScores; i++) save->scoreBoard[i] = Scores[i];
+    for (size_t i = 0; i < numScores; i++) save->scoreBoard[i] = Scores[i];
 
     // Return the pointer to the new save
     return save;
@@ -198,6 +198,8 @@ void *ParseSave(const char* path) {
 int makeSave(struct Save *save, const char* path) {
     {   //  Writing to savefile
         FILE* fp = fopen(path, "wb");
+        
+        // Logically if we can't open the file the first time, there's no need to add this check to every fopen() statement
         if (!fp) return -1;
 
         // We don't actually need this variable here, it's needed just to write empty 4 bytes at the beginning of a file
@@ -238,6 +240,8 @@ int makeSave(struct Save *save, const char* path) {
         fwrite(&save->CheckSum, sizeof(save->CheckSum), 1, fp);
         fclose(fp);
     }
+    
+    return 0;
 }
 
 /**
